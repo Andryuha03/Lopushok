@@ -1,0 +1,35 @@
+﻿<Window x:Class="lopus.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:lopus"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80*"/>
+            <RowDefinition Height="287*"/>
+        </Grid.RowDefinitions>
+        <Grid Background="#CEFFF9" Grid.Row="0">
+            <Button Visibility="Hidden" x:Name="ButtonBack" Content="Назад" Margin="15,0,0,0"  HorizontalAlignment="Right" VerticalAlignment="Center"    Foreground="white" Click="ButtonBack_Click" FontFamily="Verdana" Height="28"/>
+            <Image Source="/Лопушок.png" Stretch="Uniform" Width="50" Height="50" HorizontalAlignment="Left"  VerticalAlignment="Center" Margin="15,0,0,0"/>
+
+
+
+
+        </Grid>
+
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" ContentRendered="MainFrame_ContentRendered" Navigated="MainFrame_Navigated" Grid.Row="1"/>
+        <Button    Visibility="Hidden"                x:Name="Materials" Content="Продукты" HorizontalAlignment="Left" Margin="10,13,0,0" VerticalAlignment="Top" Click="Materials_Click" Height="47" Width="44" Grid.Row="2" />
+        <Button   Visibility="Hidden"    Name="Supplier" Content="Материалы" HorizontalAlignment="Right" Margin="0,13,20,0" VerticalAlignment="Top" Click="Supplier_Click" Height="47" Width="51" Grid.Row="2"/>
+        <Button   Visibility="Hidden"      Content="Back" Name="BtnBack"  HorizontalAlignment="Left"    Click="BtnBack_Click" Margin="620,27,0,23" Width="175"     />
+
+        <TextBlock Text="Лопушок" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="48" Foreground="#00CC76" Height="81" Width="134"/>
+
+        <Button   Visibility="Hidden"          x:Name="Button_Login" Content="Войти анонимно" Width="150" HorizontalAlignment="Left" Margin="335,0,0,0" VerticalAlignment="Center" Grid.Row="2" Click="Button_Login_Click" Height="30"/>
+
+
+    </Grid>
+</Window>

@@ -1,0 +1,1262 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище LOXModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="authoriz">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="login" Type="nvarchar" MaxLength="50" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" />
+          <Property Name="type_user" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Агент">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Наименование" Type="nvarchar" MaxLength="50" />
+          <Property Name="Тип" Type="nvarchar" MaxLength="50" />
+          <Property Name="Юридический_адрес" Type="nvarchar" MaxLength="50" />
+          <Property Name="ИНН" Type="int" />
+          <Property Name="КПП" Type="int" />
+          <Property Name="ФИО_директора" Type="nvarchar" MaxLength="50" />
+          <Property Name="Контактные_данные" Type="int" />
+          <Property Name="Логотип" Type="varbinary(max)" />
+          <Property Name="Приоритет" Type="int" />
+          <Property Name="ID_точки_продаж" Type="int" />
+          <Property Name="Рейтинг" Type="int" />
+          <Property Name="Скидка" Type="float" />
+        </EntityType>
+        <EntityType Name="Аналитик">
+          <Key>
+            <PropertyRef Name="ID_аналитика" />
+          </Key>
+          <Property Name="ID_аналитика" Type="int" Nullable="false" />
+          <Property Name="Фамилия" Type="nvarchar" MaxLength="50" />
+          <Property Name="Имя" Type="nvarchar" MaxLength="50" />
+          <Property Name="Отчество" Type="nvarchar" MaxLength="50" />
+          <Property Name="Дата_рождения" Type="date" />
+          <Property Name="Телефон" Type="int" />
+          <Property Name="Данные" Type="int" />
+        </EntityType>
+        <EntityType Name="График_смены">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_мастера" Type="int" />
+          <Property Name="ID_цеха" Type="int" />
+        </EntityType>
+        <EntityType Name="Заявка">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_агента" Type="int" />
+          <Property Name="ID_менеджера" Type="int" />
+          <Property Name="ID_продукции" Type="int" />
+          <Property Name="Тип_доставки" Type="nvarchar" MaxLength="50" />
+          <Property Name="Сумма_к_оплате" Type="money" />
+          <Property Name="Статус_проверки" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Мастер_смены">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Фамилия" Type="nvarchar" MaxLength="50" />
+          <Property Name="Имя" Type="nvarchar" MaxLength="50" />
+          <Property Name="Отчество" Type="nvarchar" MaxLength="50" />
+          <Property Name="Дата_рождения" Type="date" />
+          <Property Name="Паспортные_данные" Type="int" />
+          <Property Name="Реквизиты" Type="int" />
+        </EntityType>
+        <EntityType Name="Материал">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Наименование" Type="nvarchar" MaxLength="50" />
+          <Property Name="Тип_материала" Type="nvarchar" MaxLength="50" />
+          <Property Name="Количество_в_упаковке" Type="int" />
+          <Property Name="Единица_измерения" Type="nvarchar" MaxLength="2" />
+          <Property Name="Количество_на_складе" Type="int" />
+          <Property Name="Минимальное_количество" Type="int" />
+          <Property Name="Цена" Type="money" />
+        </EntityType>
+        <EntityType Name="МатериалИПоставщик">
+          <Key>
+            <PropertyRef Name="ID_материала" />
+            <PropertyRef Name="ID_поставщика" />
+          </Key>
+          <Property Name="ID_материала" Type="int" Nullable="false" />
+          <Property Name="ID_поставщика" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Менеджер">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Фамилия" Type="nvarchar" MaxLength="50" />
+          <Property Name="Имя" Type="nvarchar" MaxLength="50" />
+          <Property Name="Отчество" Type="nvarchar" MaxLength="50" />
+          <Property Name="Дата_рождения" Type="date" />
+          <Property Name="Телефон" Type="int" />
+          <Property Name="Адрес" Type="nvarchar" MaxLength="50" />
+          <Property Name="Данные" Type="int" />
+        </EntityType>
+        <EntityType Name="Предложение">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_аналитика" Type="int" />
+          <Property Name="ID_менеджера" Type="int" />
+          <Property Name="ID_агента" Type="int" />
+          <Property Name="Наименование" Type="nvarchar" MaxLength="50" />
+          <Property Name="Описание" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Продукт">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Наименование" Type="nvarchar" MaxLength="50" />
+          <Property Name="Артикул" Type="nvarchar" MaxLength="50" />
+          <Property Name="Мин_стоим" Type="money" />
+          <Property Name="Изображение" Type="varbinary(max)" />
+          <Property Name="Тип_прод" Type="nvarchar" MaxLength="50" />
+          <Property Name="Кол_во_для_пр" Type="int" />
+          <Property Name="Ном_цех" Type="int" />
+        </EntityType>
+        <EntityType Name="Продукция">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_производства" Type="int" />
+          <Property Name="Количество" Type="int" />
+          <Property Name="Стоимость" Type="money" />
+          <Property Name="Время_производства" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ПродукцияИМатериал">
+          <Key>
+            <PropertyRef Name="ID_продукции" />
+            <PropertyRef Name="ID_материала" />
+          </Key>
+          <Property Name="ID_продукции" Type="int" Nullable="false" />
+          <Property Name="ID_материала" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ПродукцияИПроизводство">
+          <Key>
+            <PropertyRef Name="ID_продукции" />
+            <PropertyRef Name="ID_производства" />
+          </Key>
+          <Property Name="ID_продукции" Type="int" Nullable="false" />
+          <Property Name="ID_производства" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Производство">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Наименование" Type="nvarchar" MaxLength="50" />
+          <Property Name="ID_смены" Type="int" />
+        </EntityType>
+        <EntityType Name="Сотрудник">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Фамилия" Type="nvarchar" MaxLength="50" />
+          <Property Name="Имя" Type="nvarchar" MaxLength="50" />
+          <Property Name="Отчество" Type="nvarchar" MaxLength="50" />
+          <Property Name="Дата_рождения" Type="date" />
+          <Property Name="Паспортные_данные" Type="int" />
+          <Property Name="Реквизиты" Type="int" />
+          <Property Name="ID_смены" Type="int" />
+        </EntityType>
+        <EntityType Name="СотрудникИТурникет">
+          <Key>
+            <PropertyRef Name="ID_сотрудника" />
+            <PropertyRef Name="ID_турникета" />
+          </Key>
+          <Property Name="ID_сотрудника" Type="int" Nullable="false" />
+          <Property Name="ID_турникета" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ТипОрганизации">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="typeorg" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Точка_продажи">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Наименование" Type="nvarchar" MaxLength="50" />
+          <Property Name="Контактные_данные" Type="int" />
+          <Property Name="Адрес" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Турникет">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Время_входа" Type="datetime" />
+          <Property Name="Время_выхода" Type="datetime" />
+          <Property Name="ID_сотрудника" Type="int" />
+        </EntityType>
+        <EntityType Name="Цех">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Наименование" Type="nvarchar" MaxLength="50" />
+          <Property Name="Описание" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Агент_Точка_продажи">
+          <End Role="Точка_продажи" Type="Self.Точка_продажи" Multiplicity="0..1" />
+          <End Role="Агент" Type="Self.Агент" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Точка_продажи">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Агент">
+              <PropertyRef Name="ID_точки_продаж" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_График_смены_Мастер_смены">
+          <End Role="Мастер_смены" Type="Self.Мастер_смены" Multiplicity="0..1" />
+          <End Role="График_смены" Type="Self.График_смены" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Мастер_смены">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="График_смены">
+              <PropertyRef Name="ID_мастера" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_График_смены_Цех">
+          <End Role="Цех" Type="Self.Цех" Multiplicity="0..1" />
+          <End Role="График_смены" Type="Self.График_смены" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Цех">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="График_смены">
+              <PropertyRef Name="ID_цеха" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Заявка_Агент">
+          <End Role="Агент" Type="Self.Агент" Multiplicity="0..1" />
+          <End Role="Заявка" Type="Self.Заявка" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Агент">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Заявка">
+              <PropertyRef Name="ID_агента" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Заявка_Менеджер">
+          <End Role="Менеджер" Type="Self.Менеджер" Multiplicity="0..1" />
+          <End Role="Заявка" Type="Self.Заявка" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Менеджер">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Заявка">
+              <PropertyRef Name="ID_менеджера" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Заявка_Продукция">
+          <End Role="Продукция" Type="Self.Продукция" Multiplicity="0..1" />
+          <End Role="Заявка" Type="Self.Заявка" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Продукция">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Заявка">
+              <PropertyRef Name="ID_продукции" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_МатериалИПоставщик_Материал">
+          <End Role="Материал" Type="Self.Материал" Multiplicity="1" />
+          <End Role="МатериалИПоставщик" Type="Self.МатериалИПоставщик" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Материал">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="МатериалИПоставщик">
+              <PropertyRef Name="ID_материала" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_МатериалИПоставщик_Поставщик">
+          <End Role="Продукт" Type="Self.Продукт" Multiplicity="1" />
+          <End Role="МатериалИПоставщик" Type="Self.МатериалИПоставщик" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Продукт">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="МатериалИПоставщик">
+              <PropertyRef Name="ID_поставщика" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Предложение_Агент">
+          <End Role="Агент" Type="Self.Агент" Multiplicity="0..1" />
+          <End Role="Предложение" Type="Self.Предложение" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Агент">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Предложение">
+              <PropertyRef Name="ID_агента" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Предложение_Аналитик">
+          <End Role="Аналитик" Type="Self.Аналитик" Multiplicity="0..1" />
+          <End Role="Предложение" Type="Self.Предложение" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Аналитик">
+              <PropertyRef Name="ID_аналитика" />
+            </Principal>
+            <Dependent Role="Предложение">
+              <PropertyRef Name="ID_аналитика" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Предложение_Менеджер">
+          <End Role="Менеджер" Type="Self.Менеджер" Multiplicity="0..1" />
+          <End Role="Предложение" Type="Self.Предложение" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Менеджер">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Предложение">
+              <PropertyRef Name="ID_менеджера" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ПродукцияИМатериал_Материал">
+          <End Role="Материал" Type="Self.Материал" Multiplicity="1" />
+          <End Role="ПродукцияИМатериал" Type="Self.ПродукцияИМатериал" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Материал">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ПродукцияИМатериал">
+              <PropertyRef Name="ID_материала" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ПродукцияИМатериал_Продукция">
+          <End Role="Продукция" Type="Self.Продукция" Multiplicity="1" />
+          <End Role="ПродукцияИМатериал" Type="Self.ПродукцияИМатериал" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Продукция">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ПродукцияИМатериал">
+              <PropertyRef Name="ID_продукции" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ПродукцияИПроизводство_Продукция">
+          <End Role="Продукция" Type="Self.Продукция" Multiplicity="1" />
+          <End Role="ПродукцияИПроизводство" Type="Self.ПродукцияИПроизводство" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Продукция">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ПродукцияИПроизводство">
+              <PropertyRef Name="ID_продукции" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ПродукцияИПроизводство_Производства">
+          <End Role="Производство" Type="Self.Производство" Multiplicity="1" />
+          <End Role="ПродукцияИПроизводство" Type="Self.ПродукцияИПроизводство" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Производство">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ПродукцияИПроизводство">
+              <PropertyRef Name="ID_производства" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Производство_График_смены">
+          <End Role="График_смены" Type="Self.График_смены" Multiplicity="0..1" />
+          <End Role="Производство" Type="Self.Производство" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="График_смены">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Производство">
+              <PropertyRef Name="ID_смены" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Сотрудник_График_смены">
+          <End Role="График_смены" Type="Self.График_смены" Multiplicity="0..1" />
+          <End Role="Сотрудник" Type="Self.Сотрудник" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="График_смены">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Сотрудник">
+              <PropertyRef Name="ID_смены" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_СотрудникИТурникет_Сотрудник">
+          <End Role="Сотрудник" Type="Self.Сотрудник" Multiplicity="1" />
+          <End Role="СотрудникИТурникет" Type="Self.СотрудникИТурникет" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Сотрудник">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="СотрудникИТурникет">
+              <PropertyRef Name="ID_сотрудника" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_СотрудникИТурникет_Турникет">
+          <End Role="Турникет" Type="Self.Турникет" Multiplicity="1" />
+          <End Role="СотрудникИТурникет" Type="Self.СотрудникИТурникет" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Турникет">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="СотрудникИТурникет">
+              <PropertyRef Name="ID_турникета" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище LOXModelContainer">
+          <EntitySet Name="authoriz" EntityType="Self.authoriz" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Агент" EntityType="Self.Агент" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Аналитик" EntityType="Self.Аналитик" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="График_смены" EntityType="Self.График_смены" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Заявка" EntityType="Self.Заявка" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Мастер_смены" EntityType="Self.Мастер_смены" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Материал" EntityType="Self.Материал" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="МатериалИПоставщик" EntityType="Self.МатериалИПоставщик" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Менеджер" EntityType="Self.Менеджер" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Предложение" EntityType="Self.Предложение" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Продукт" EntityType="Self.Продукт" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Продукция" EntityType="Self.Продукция" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ПродукцияИМатериал" EntityType="Self.ПродукцияИМатериал" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ПродукцияИПроизводство" EntityType="Self.ПродукцияИПроизводство" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Производство" EntityType="Self.Производство" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Сотрудник" EntityType="Self.Сотрудник" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="СотрудникИТурникет" EntityType="Self.СотрудникИТурникет" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ТипОрганизации" EntityType="Self.ТипОрганизации" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Точка_продажи" EntityType="Self.Точка_продажи" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Турникет" EntityType="Self.Турникет" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Цех" EntityType="Self.Цех" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Агент_Точка_продажи" Association="Self.FK_Агент_Точка_продажи">
+            <End Role="Точка_продажи" EntitySet="Точка_продажи" />
+            <End Role="Агент" EntitySet="Агент" />
+          </AssociationSet>
+          <AssociationSet Name="FK_График_смены_Мастер_смены" Association="Self.FK_График_смены_Мастер_смены">
+            <End Role="Мастер_смены" EntitySet="Мастер_смены" />
+            <End Role="График_смены" EntitySet="График_смены" />
+          </AssociationSet>
+          <AssociationSet Name="FK_График_смены_Цех" Association="Self.FK_График_смены_Цех">
+            <End Role="Цех" EntitySet="Цех" />
+            <End Role="График_смены" EntitySet="График_смены" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Заявка_Агент" Association="Self.FK_Заявка_Агент">
+            <End Role="Агент" EntitySet="Агент" />
+            <End Role="Заявка" EntitySet="Заявка" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Заявка_Менеджер" Association="Self.FK_Заявка_Менеджер">
+            <End Role="Менеджер" EntitySet="Менеджер" />
+            <End Role="Заявка" EntitySet="Заявка" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Заявка_Продукция" Association="Self.FK_Заявка_Продукция">
+            <End Role="Продукция" EntitySet="Продукция" />
+            <End Role="Заявка" EntitySet="Заявка" />
+          </AssociationSet>
+          <AssociationSet Name="FK_МатериалИПоставщик_Материал" Association="Self.FK_МатериалИПоставщик_Материал">
+            <End Role="Материал" EntitySet="Материал" />
+            <End Role="МатериалИПоставщик" EntitySet="МатериалИПоставщик" />
+          </AssociationSet>
+          <AssociationSet Name="FK_МатериалИПоставщик_Поставщик" Association="Self.FK_МатериалИПоставщик_Поставщик">
+            <End Role="Продукт" EntitySet="Продукт" />
+            <End Role="МатериалИПоставщик" EntitySet="МатериалИПоставщик" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Предложение_Агент" Association="Self.FK_Предложение_Агент">
+            <End Role="Агент" EntitySet="Агент" />
+            <End Role="Предложение" EntitySet="Предложение" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Предложение_Аналитик" Association="Self.FK_Предложение_Аналитик">
+            <End Role="Аналитик" EntitySet="Аналитик" />
+            <End Role="Предложение" EntitySet="Предложение" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Предложение_Менеджер" Association="Self.FK_Предложение_Менеджер">
+            <End Role="Менеджер" EntitySet="Менеджер" />
+            <End Role="Предложение" EntitySet="Предложение" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ПродукцияИМатериал_Материал" Association="Self.FK_ПродукцияИМатериал_Материал">
+            <End Role="Материал" EntitySet="Материал" />
+            <End Role="ПродукцияИМатериал" EntitySet="ПродукцияИМатериал" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ПродукцияИМатериал_Продукция" Association="Self.FK_ПродукцияИМатериал_Продукция">
+            <End Role="Продукция" EntitySet="Продукция" />
+            <End Role="ПродукцияИМатериал" EntitySet="ПродукцияИМатериал" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ПродукцияИПроизводство_Продукция" Association="Self.FK_ПродукцияИПроизводство_Продукция">
+            <End Role="Продукция" EntitySet="Продукция" />
+            <End Role="ПродукцияИПроизводство" EntitySet="ПродукцияИПроизводство" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ПродукцияИПроизводство_Производства" Association="Self.FK_ПродукцияИПроизводство_Производства">
+            <End Role="Производство" EntitySet="Производство" />
+            <End Role="ПродукцияИПроизводство" EntitySet="ПродукцияИПроизводство" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Производство_График_смены" Association="Self.FK_Производство_График_смены">
+            <End Role="График_смены" EntitySet="График_смены" />
+            <End Role="Производство" EntitySet="Производство" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Сотрудник_График_смены" Association="Self.FK_Сотрудник_График_смены">
+            <End Role="График_смены" EntitySet="График_смены" />
+            <End Role="Сотрудник" EntitySet="Сотрудник" />
+          </AssociationSet>
+          <AssociationSet Name="FK_СотрудникИТурникет_Сотрудник" Association="Self.FK_СотрудникИТурникет_Сотрудник">
+            <End Role="Сотрудник" EntitySet="Сотрудник" />
+            <End Role="СотрудникИТурникет" EntitySet="СотрудникИТурникет" />
+          </AssociationSet>
+          <AssociationSet Name="FK_СотрудникИТурникет_Турникет" Association="Self.FK_СотрудникИТурникет_Турникет">
+            <End Role="Турникет" EntitySet="Турникет" />
+            <End Role="СотрудникИТурникет" EntitySet="СотрудникИТурникет" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LOXModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="authoriz">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="type_user" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Агент">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Наименование" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Тип" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Юридический_адрес" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ИНН" Type="Int32" />
+          <Property Name="КПП" Type="Int32" />
+          <Property Name="ФИО_директора" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Контактные_данные" Type="Int32" />
+          <Property Name="Логотип" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Приоритет" Type="Int32" />
+          <Property Name="ID_точки_продаж" Type="Int32" />
+          <Property Name="Рейтинг" Type="Int32" />
+          <Property Name="Скидка" Type="Double" />
+          <NavigationProperty Name="Точка_продажи" Relationship="Self.FK_Агент_Точка_продажи" FromRole="Агент" ToRole="Точка_продажи" />
+          <NavigationProperty Name="Заявка" Relationship="Self.FK_Заявка_Агент" FromRole="Агент" ToRole="Заявка" />
+          <NavigationProperty Name="Предложение" Relationship="Self.FK_Предложение_Агент" FromRole="Агент" ToRole="Предложение" />
+        </EntityType>
+        <EntityType Name="Аналитик">
+          <Key>
+            <PropertyRef Name="ID_аналитика" />
+          </Key>
+          <Property Name="ID_аналитика" Type="Int32" Nullable="false" />
+          <Property Name="Фамилия" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Имя" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Отчество" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Дата_рождения" Type="DateTime" Precision="0" />
+          <Property Name="Телефон" Type="Int32" />
+          <Property Name="Данные" Type="Int32" />
+          <NavigationProperty Name="Предложение" Relationship="Self.FK_Предложение_Аналитик" FromRole="Аналитик" ToRole="Предложение" />
+        </EntityType>
+        <EntityType Name="График_смены">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_мастера" Type="Int32" />
+          <Property Name="ID_цеха" Type="Int32" />
+          <NavigationProperty Name="Мастер_смены" Relationship="Self.FK_График_смены_Мастер_смены" FromRole="График_смены" ToRole="Мастер_смены" />
+          <NavigationProperty Name="Цех" Relationship="Self.FK_График_смены_Цех" FromRole="График_смены" ToRole="Цех" />
+          <NavigationProperty Name="Производство" Relationship="Self.FK_Производство_График_смены" FromRole="График_смены" ToRole="Производство" />
+          <NavigationProperty Name="Сотрудник" Relationship="Self.FK_Сотрудник_График_смены" FromRole="График_смены" ToRole="Сотрудник" />
+        </EntityType>
+        <EntityType Name="Заявка">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_агента" Type="Int32" />
+          <Property Name="ID_менеджера" Type="Int32" />
+          <Property Name="ID_продукции" Type="Int32" />
+          <Property Name="Тип_доставки" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Сумма_к_оплате" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Статус_проверки" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Агент" Relationship="Self.FK_Заявка_Агент" FromRole="Заявка" ToRole="Агент" />
+          <NavigationProperty Name="Менеджер" Relationship="Self.FK_Заявка_Менеджер" FromRole="Заявка" ToRole="Менеджер" />
+          <NavigationProperty Name="Продукция" Relationship="Self.FK_Заявка_Продукция" FromRole="Заявка" ToRole="Продукция" />
+        </EntityType>
+        <EntityType Name="Мастер_смены">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Фамилия" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Имя" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Отчество" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Дата_рождения" Type="DateTime" Precision="0" />
+          <Property Name="Паспортные_данные" Type="Int32" />
+          <Property Name="Реквизиты" Type="Int32" />
+          <NavigationProperty Name="График_смены" Relationship="Self.FK_График_смены_Мастер_смены" FromRole="Мастер_смены" ToRole="График_смены" />
+        </EntityType>
+        <EntityType Name="Материал">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Наименование" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Тип_материала" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Количество_в_упаковке" Type="Int32" />
+          <Property Name="Единица_измерения" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="Количество_на_складе" Type="Int32" />
+          <Property Name="Минимальное_количество" Type="Int32" />
+          <Property Name="Цена" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="Продукт" Relationship="Self.МатериалИПоставщик" FromRole="Материал" ToRole="Продукт" />
+          <NavigationProperty Name="Продукция" Relationship="Self.ПродукцияИМатериал" FromRole="Материал" ToRole="Продукция" />
+        </EntityType>
+        <EntityType Name="Менеджер">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Фамилия" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Имя" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Отчество" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Дата_рождения" Type="DateTime" Precision="0" />
+          <Property Name="Телефон" Type="Int32" />
+          <Property Name="Адрес" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Данные" Type="Int32" />
+          <NavigationProperty Name="Заявка" Relationship="Self.FK_Заявка_Менеджер" FromRole="Менеджер" ToRole="Заявка" />
+          <NavigationProperty Name="Предложение" Relationship="Self.FK_Предложение_Менеджер" FromRole="Менеджер" ToRole="Предложение" />
+        </EntityType>
+        <EntityType Name="Предложение">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_аналитика" Type="Int32" />
+          <Property Name="ID_менеджера" Type="Int32" />
+          <Property Name="ID_агента" Type="Int32" />
+          <Property Name="Наименование" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Описание" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Агент" Relationship="Self.FK_Предложение_Агент" FromRole="Предложение" ToRole="Агент" />
+          <NavigationProperty Name="Аналитик" Relationship="Self.FK_Предложение_Аналитик" FromRole="Предложение" ToRole="Аналитик" />
+          <NavigationProperty Name="Менеджер" Relationship="Self.FK_Предложение_Менеджер" FromRole="Предложение" ToRole="Менеджер" />
+        </EntityType>
+        <EntityType Name="Продукт">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Наименование" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Артикул" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Мин_стоим" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Изображение" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Тип_прод" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Кол_во_для_пр" Type="Int32" />
+          <Property Name="Ном_цех" Type="Int32" />
+          <NavigationProperty Name="Материал" Relationship="Self.МатериалИПоставщик" FromRole="Продукт" ToRole="Материал" />
+        </EntityType>
+        <EntityType Name="Продукция">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_производства" Type="Int32" />
+          <Property Name="Количество" Type="Int32" />
+          <Property Name="Стоимость" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Время_производства" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Заявка" Relationship="Self.FK_Заявка_Продукция" FromRole="Продукция" ToRole="Заявка" />
+          <NavigationProperty Name="Материал" Relationship="Self.ПродукцияИМатериал" FromRole="Продукция" ToRole="Материал" />
+          <NavigationProperty Name="Производство" Relationship="Self.ПродукцияИПроизводство" FromRole="Продукция" ToRole="Производство" />
+        </EntityType>
+        <EntityType Name="Производство">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Наименование" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ID_смены" Type="Int32" />
+          <NavigationProperty Name="График_смены" Relationship="Self.FK_Производство_График_смены" FromRole="Производство" ToRole="График_смены" />
+          <NavigationProperty Name="Продукция" Relationship="Self.ПродукцияИПроизводство" FromRole="Производство" ToRole="Продукция" />
+        </EntityType>
+        <EntityType Name="Сотрудник">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Фамилия" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Имя" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Отчество" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Дата_рождения" Type="DateTime" Precision="0" />
+          <Property Name="Паспортные_данные" Type="Int32" />
+          <Property Name="Реквизиты" Type="Int32" />
+          <Property Name="ID_смены" Type="Int32" />
+          <NavigationProperty Name="График_смены" Relationship="Self.FK_Сотрудник_График_смены" FromRole="Сотрудник" ToRole="График_смены" />
+          <NavigationProperty Name="Турникет" Relationship="Self.СотрудникИТурникет" FromRole="Сотрудник" ToRole="Турникет" />
+        </EntityType>
+        <EntityType Name="ТипОрганизации">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="typeorg" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Точка_продажи">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Наименование" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Контактные_данные" Type="Int32" />
+          <Property Name="Адрес" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Агент" Relationship="Self.FK_Агент_Точка_продажи" FromRole="Точка_продажи" ToRole="Агент" />
+        </EntityType>
+        <EntityType Name="Турникет">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Время_входа" Type="DateTime" Precision="3" />
+          <Property Name="Время_выхода" Type="DateTime" Precision="3" />
+          <Property Name="ID_сотрудника" Type="Int32" />
+          <NavigationProperty Name="Сотрудник" Relationship="Self.СотрудникИТурникет" FromRole="Турникет" ToRole="Сотрудник" />
+        </EntityType>
+        <EntityType Name="Цех">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Наименование" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Описание" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="График_смены" Relationship="Self.FK_График_смены_Цех" FromRole="Цех" ToRole="График_смены" />
+        </EntityType>
+        <Association Name="FK_Агент_Точка_продажи">
+          <End Role="Точка_продажи" Type="Self.Точка_продажи" Multiplicity="0..1" />
+          <End Role="Агент" Type="Self.Агент" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Точка_продажи">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Агент">
+              <PropertyRef Name="ID_точки_продаж" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Заявка_Агент">
+          <End Role="Агент" Type="Self.Агент" Multiplicity="0..1" />
+          <End Role="Заявка" Type="Self.Заявка" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Агент">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Заявка">
+              <PropertyRef Name="ID_агента" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Предложение_Агент">
+          <End Role="Агент" Type="Self.Агент" Multiplicity="0..1" />
+          <End Role="Предложение" Type="Self.Предложение" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Агент">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Предложение">
+              <PropertyRef Name="ID_агента" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Предложение_Аналитик">
+          <End Role="Аналитик" Type="Self.Аналитик" Multiplicity="0..1" />
+          <End Role="Предложение" Type="Self.Предложение" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Аналитик">
+              <PropertyRef Name="ID_аналитика" />
+            </Principal>
+            <Dependent Role="Предложение">
+              <PropertyRef Name="ID_аналитика" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_График_смены_Мастер_смены">
+          <End Role="Мастер_смены" Type="Self.Мастер_смены" Multiplicity="0..1" />
+          <End Role="График_смены" Type="Self.График_смены" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Мастер_смены">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="График_смены">
+              <PropertyRef Name="ID_мастера" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_График_смены_Цех">
+          <End Role="Цех" Type="Self.Цех" Multiplicity="0..1" />
+          <End Role="График_смены" Type="Self.График_смены" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Цех">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="График_смены">
+              <PropertyRef Name="ID_цеха" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Производство_График_смены">
+          <End Role="График_смены" Type="Self.График_смены" Multiplicity="0..1" />
+          <End Role="Производство" Type="Self.Производство" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="График_смены">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Производство">
+              <PropertyRef Name="ID_смены" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Сотрудник_График_смены">
+          <End Role="График_смены" Type="Self.График_смены" Multiplicity="0..1" />
+          <End Role="Сотрудник" Type="Self.Сотрудник" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="График_смены">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Сотрудник">
+              <PropertyRef Name="ID_смены" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Заявка_Менеджер">
+          <End Role="Менеджер" Type="Self.Менеджер" Multiplicity="0..1" />
+          <End Role="Заявка" Type="Self.Заявка" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Менеджер">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Заявка">
+              <PropertyRef Name="ID_менеджера" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Заявка_Продукция">
+          <End Role="Продукция" Type="Self.Продукция" Multiplicity="0..1" />
+          <End Role="Заявка" Type="Self.Заявка" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Продукция">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Заявка">
+              <PropertyRef Name="ID_продукции" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Предложение_Менеджер">
+          <End Role="Менеджер" Type="Self.Менеджер" Multiplicity="0..1" />
+          <End Role="Предложение" Type="Self.Предложение" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Менеджер">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Предложение">
+              <PropertyRef Name="ID_менеджера" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="МатериалИПоставщик">
+          <End Role="Материал" Type="Self.Материал" Multiplicity="*" />
+          <End Role="Продукт" Type="Self.Продукт" Multiplicity="*" />
+        </Association>
+        <Association Name="ПродукцияИМатериал">
+          <End Role="Материал" Type="Self.Материал" Multiplicity="*" />
+          <End Role="Продукция" Type="Self.Продукция" Multiplicity="*" />
+        </Association>
+        <Association Name="ПродукцияИПроизводство">
+          <End Role="Продукция" Type="Self.Продукция" Multiplicity="*" />
+          <End Role="Производство" Type="Self.Производство" Multiplicity="*" />
+        </Association>
+        <Association Name="СотрудникИТурникет">
+          <End Role="Сотрудник" Type="Self.Сотрудник" Multiplicity="*" />
+          <End Role="Турникет" Type="Self.Турникет" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="LOXEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="authorizs" EntityType="Self.authoriz" />
+          <EntitySet Name="Агент" EntityType="Self.Агент" />
+          <EntitySet Name="Аналитик" EntityType="Self.Аналитик" />
+          <EntitySet Name="График_смены" EntityType="Self.График_смены" />
+          <EntitySet Name="Заявка" EntityType="Self.Заявка" />
+          <EntitySet Name="Мастер_смены" EntityType="Self.Мастер_смены" />
+          <EntitySet Name="Материал" EntityType="Self.Материал" />
+          <EntitySet Name="Менеджер" EntityType="Self.Менеджер" />
+          <EntitySet Name="Предложение" EntityType="Self.Предложение" />
+          <EntitySet Name="Продукт" EntityType="Self.Продукт" />
+          <EntitySet Name="Продукция" EntityType="Self.Продукция" />
+          <EntitySet Name="Производство" EntityType="Self.Производство" />
+          <EntitySet Name="Сотрудник" EntityType="Self.Сотрудник" />
+          <EntitySet Name="ТипОрганизации" EntityType="Self.ТипОрганизации" />
+          <EntitySet Name="Точка_продажи" EntityType="Self.Точка_продажи" />
+          <EntitySet Name="Турникет" EntityType="Self.Турникет" />
+          <EntitySet Name="Цех" EntityType="Self.Цех" />
+          <AssociationSet Name="FK_Агент_Точка_продажи" Association="Self.FK_Агент_Точка_продажи">
+            <End Role="Точка_продажи" EntitySet="Точка_продажи" />
+            <End Role="Агент" EntitySet="Агент" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Заявка_Агент" Association="Self.FK_Заявка_Агент">
+            <End Role="Агент" EntitySet="Агент" />
+            <End Role="Заявка" EntitySet="Заявка" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Предложение_Агент" Association="Self.FK_Предложение_Агент">
+            <End Role="Агент" EntitySet="Агент" />
+            <End Role="Предложение" EntitySet="Предложение" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Предложение_Аналитик" Association="Self.FK_Предложение_Аналитик">
+            <End Role="Аналитик" EntitySet="Аналитик" />
+            <End Role="Предложение" EntitySet="Предложение" />
+          </AssociationSet>
+          <AssociationSet Name="FK_График_смены_Мастер_смены" Association="Self.FK_График_смены_Мастер_смены">
+            <End Role="Мастер_смены" EntitySet="Мастер_смены" />
+            <End Role="График_смены" EntitySet="График_смены" />
+          </AssociationSet>
+          <AssociationSet Name="FK_График_смены_Цех" Association="Self.FK_График_смены_Цех">
+            <End Role="Цех" EntitySet="Цех" />
+            <End Role="График_смены" EntitySet="График_смены" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Производство_График_смены" Association="Self.FK_Производство_График_смены">
+            <End Role="График_смены" EntitySet="График_смены" />
+            <End Role="Производство" EntitySet="Производство" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Сотрудник_График_смены" Association="Self.FK_Сотрудник_График_смены">
+            <End Role="График_смены" EntitySet="График_смены" />
+            <End Role="Сотрудник" EntitySet="Сотрудник" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Заявка_Менеджер" Association="Self.FK_Заявка_Менеджер">
+            <End Role="Менеджер" EntitySet="Менеджер" />
+            <End Role="Заявка" EntitySet="Заявка" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Заявка_Продукция" Association="Self.FK_Заявка_Продукция">
+            <End Role="Продукция" EntitySet="Продукция" />
+            <End Role="Заявка" EntitySet="Заявка" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Предложение_Менеджер" Association="Self.FK_Предложение_Менеджер">
+            <End Role="Менеджер" EntitySet="Менеджер" />
+            <End Role="Предложение" EntitySet="Предложение" />
+          </AssociationSet>
+          <AssociationSet Name="МатериалИПоставщик" Association="Self.МатериалИПоставщик">
+            <End Role="Материал" EntitySet="Материал" />
+            <End Role="Продукт" EntitySet="Продукт" />
+          </AssociationSet>
+          <AssociationSet Name="ПродукцияИМатериал" Association="Self.ПродукцияИМатериал">
+            <End Role="Материал" EntitySet="Материал" />
+            <End Role="Продукция" EntitySet="Продукция" />
+          </AssociationSet>
+          <AssociationSet Name="ПродукцияИПроизводство" Association="Self.ПродукцияИПроизводство">
+            <End Role="Продукция" EntitySet="Продукция" />
+            <End Role="Производство" EntitySet="Производство" />
+          </AssociationSet>
+          <AssociationSet Name="СотрудникИТурникет" Association="Self.СотрудникИТурникет">
+            <End Role="Сотрудник" EntitySet="Сотрудник" />
+            <End Role="Турникет" EntitySet="Турникет" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище LOXModelContainer" CdmEntityContainer="LOXEntities">
+          <EntitySetMapping Name="authorizs">
+            <EntityTypeMapping TypeName="LOXModel.authoriz">
+              <MappingFragment StoreEntitySet="authoriz">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="type_user" ColumnName="type_user" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Агент">
+            <EntityTypeMapping TypeName="LOXModel.Агент">
+              <MappingFragment StoreEntitySet="Агент">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+                <ScalarProperty Name="Тип" ColumnName="Тип" />
+                <ScalarProperty Name="Юридический_адрес" ColumnName="Юридический_адрес" />
+                <ScalarProperty Name="ИНН" ColumnName="ИНН" />
+                <ScalarProperty Name="КПП" ColumnName="КПП" />
+                <ScalarProperty Name="ФИО_директора" ColumnName="ФИО_директора" />
+                <ScalarProperty Name="Контактные_данные" ColumnName="Контактные_данные" />
+                <ScalarProperty Name="Логотип" ColumnName="Логотип" />
+                <ScalarProperty Name="Приоритет" ColumnName="Приоритет" />
+                <ScalarProperty Name="ID_точки_продаж" ColumnName="ID_точки_продаж" />
+                <ScalarProperty Name="Рейтинг" ColumnName="Рейтинг" />
+                <ScalarProperty Name="Скидка" ColumnName="Скидка" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Аналитик">
+            <EntityTypeMapping TypeName="LOXModel.Аналитик">
+              <MappingFragment StoreEntitySet="Аналитик">
+                <ScalarProperty Name="ID_аналитика" ColumnName="ID_аналитика" />
+                <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+                <ScalarProperty Name="Имя" ColumnName="Имя" />
+                <ScalarProperty Name="Отчество" ColumnName="Отчество" />
+                <ScalarProperty Name="Дата_рождения" ColumnName="Дата_рождения" />
+                <ScalarProperty Name="Телефон" ColumnName="Телефон" />
+                <ScalarProperty Name="Данные" ColumnName="Данные" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="График_смены">
+            <EntityTypeMapping TypeName="LOXModel.График_смены">
+              <MappingFragment StoreEntitySet="График_смены">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ID_мастера" ColumnName="ID_мастера" />
+                <ScalarProperty Name="ID_цеха" ColumnName="ID_цеха" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Заявка">
+            <EntityTypeMapping TypeName="LOXModel.Заявка">
+              <MappingFragment StoreEntitySet="Заявка">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ID_агента" ColumnName="ID_агента" />
+                <ScalarProperty Name="ID_менеджера" ColumnName="ID_менеджера" />
+                <ScalarProperty Name="ID_продукции" ColumnName="ID_продукции" />
+                <ScalarProperty Name="Тип_доставки" ColumnName="Тип_доставки" />
+                <ScalarProperty Name="Сумма_к_оплате" ColumnName="Сумма_к_оплате" />
+                <ScalarProperty Name="Статус_проверки" ColumnName="Статус_проверки" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Мастер_смены">
+            <EntityTypeMapping TypeName="LOXModel.Мастер_смены">
+              <MappingFragment StoreEntitySet="Мастер_смены">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+                <ScalarProperty Name="Имя" ColumnName="Имя" />
+                <ScalarProperty Name="Отчество" ColumnName="Отчество" />
+                <ScalarProperty Name="Дата_рождения" ColumnName="Дата_рождения" />
+                <ScalarProperty Name="Паспортные_данные" ColumnName="Паспортные_данные" />
+                <ScalarProperty Name="Реквизиты" ColumnName="Реквизиты" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Материал">
+            <EntityTypeMapping TypeName="LOXModel.Материал">
+              <MappingFragment StoreEntitySet="Материал">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+                <ScalarProperty Name="Тип_материала" ColumnName="Тип_материала" />
+                <ScalarProperty Name="Количество_в_упаковке" ColumnName="Количество_в_упаковке" />
+                <ScalarProperty Name="Единица_измерения" ColumnName="Единица_измерения" />
+                <ScalarProperty Name="Количество_на_складе" ColumnName="Количество_на_складе" />
+                <ScalarProperty Name="Минимальное_количество" ColumnName="Минимальное_количество" />
+                <ScalarProperty Name="Цена" ColumnName="Цена" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Менеджер">
+            <EntityTypeMapping TypeName="LOXModel.Менеджер">
+              <MappingFragment StoreEntitySet="Менеджер">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+                <ScalarProperty Name="Имя" ColumnName="Имя" />
+                <ScalarProperty Name="Отчество" ColumnName="Отчество" />
+                <ScalarProperty Name="Дата_рождения" ColumnName="Дата_рождения" />
+                <ScalarProperty Name="Телефон" ColumnName="Телефон" />
+                <ScalarProperty Name="Адрес" ColumnName="Адрес" />
+                <ScalarProperty Name="Данные" ColumnName="Данные" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Предложение">
+            <EntityTypeMapping TypeName="LOXModel.Предложение">
+              <MappingFragment StoreEntitySet="Предложение">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ID_аналитика" ColumnName="ID_аналитика" />
+                <ScalarProperty Name="ID_менеджера" ColumnName="ID_менеджера" />
+                <ScalarProperty Name="ID_агента" ColumnName="ID_агента" />
+                <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+                <ScalarProperty Name="Описание" ColumnName="Описание" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Продукт">
+            <EntityTypeMapping TypeName="LOXModel.Продукт">
+              <MappingFragment StoreEntitySet="Продукт">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+                <ScalarProperty Name="Артикул" ColumnName="Артикул" />
+                <ScalarProperty Name="Мин_стоим" ColumnName="Мин_стоим" />
+                <ScalarProperty Name="Изображение" ColumnName="Изображение" />
+                <ScalarProperty Name="Тип_прод" ColumnName="Тип_прод" />
+                <ScalarProperty Name="Кол_во_для_пр" ColumnName="Кол_во_для_пр" />
+                <ScalarProperty Name="Ном_цех" ColumnName="Ном_цех" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Продукция">
+            <EntityTypeMapping TypeName="LOXModel.Продукция">
+              <MappingFragment StoreEntitySet="Продукция">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ID_производства" ColumnName="ID_производства" />
+                <ScalarProperty Name="Количество" ColumnName="Количество" />
+                <ScalarProperty Name="Стоимость" ColumnName="Стоимость" />
+                <ScalarProperty Name="Время_производства" ColumnName="Время_производства" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Производство">
+            <EntityTypeMapping TypeName="LOXModel.Производство">
+              <MappingFragment StoreEntitySet="Производство">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+                <ScalarProperty Name="ID_смены" ColumnName="ID_смены" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Сотрудник">
+            <EntityTypeMapping TypeName="LOXModel.Сотрудник">
+              <MappingFragment StoreEntitySet="Сотрудник">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+                <ScalarProperty Name="Имя" ColumnName="Имя" />
+                <ScalarProperty Name="Отчество" ColumnName="Отчество" />
+                <ScalarProperty Name="Дата_рождения" ColumnName="Дата_рождения" />
+                <ScalarProperty Name="Паспортные_данные" ColumnName="Паспортные_данные" />
+                <ScalarProperty Name="Реквизиты" ColumnName="Реквизиты" />
+                <ScalarProperty Name="ID_смены" ColumnName="ID_смены" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ТипОрганизации">
+            <EntityTypeMapping TypeName="LOXModel.ТипОрганизации">
+              <MappingFragment StoreEntitySet="ТипОрганизации">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="typeorg" ColumnName="typeorg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Точка_продажи">
+            <EntityTypeMapping TypeName="LOXModel.Точка_продажи">
+              <MappingFragment StoreEntitySet="Точка_продажи">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+                <ScalarProperty Name="Контактные_данные" ColumnName="Контактные_данные" />
+                <ScalarProperty Name="Адрес" ColumnName="Адрес" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Турникет">
+            <EntityTypeMapping TypeName="LOXModel.Турникет">
+              <MappingFragment StoreEntitySet="Турникет">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Время_входа" ColumnName="Время_входа" />
+                <ScalarProperty Name="Время_выхода" ColumnName="Время_выхода" />
+                <ScalarProperty Name="ID_сотрудника" ColumnName="ID_сотрудника" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Цех">
+            <EntityTypeMapping TypeName="LOXModel.Цех">
+              <MappingFragment StoreEntitySet="Цех">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+                <ScalarProperty Name="Описание" ColumnName="Описание" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="МатериалИПоставщик" TypeName="LOXModel.МатериалИПоставщик" StoreEntitySet="МатериалИПоставщик">
+            <EndProperty Name="Материал">
+              <ScalarProperty Name="ID" ColumnName="ID_материала" />
+            </EndProperty>
+            <EndProperty Name="Продукт">
+              <ScalarProperty Name="ID" ColumnName="ID_поставщика" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="ПродукцияИМатериал" TypeName="LOXModel.ПродукцияИМатериал" StoreEntitySet="ПродукцияИМатериал">
+            <EndProperty Name="Материал">
+              <ScalarProperty Name="ID" ColumnName="ID_материала" />
+            </EndProperty>
+            <EndProperty Name="Продукция">
+              <ScalarProperty Name="ID" ColumnName="ID_продукции" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="ПродукцияИПроизводство" TypeName="LOXModel.ПродукцияИПроизводство" StoreEntitySet="ПродукцияИПроизводство">
+            <EndProperty Name="Продукция">
+              <ScalarProperty Name="ID" ColumnName="ID_продукции" />
+            </EndProperty>
+            <EndProperty Name="Производство">
+              <ScalarProperty Name="ID" ColumnName="ID_производства" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="СотрудникИТурникет" TypeName="LOXModel.СотрудникИТурникет" StoreEntitySet="СотрудникИТурникет">
+            <EndProperty Name="Сотрудник">
+              <ScalarProperty Name="ID" ColumnName="ID_сотрудника" />
+            </EndProperty>
+            <EndProperty Name="Турникет">
+              <ScalarProperty Name="ID" ColumnName="ID_турникета" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

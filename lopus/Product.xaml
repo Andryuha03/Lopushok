@@ -1,0 +1,45 @@
+﻿<Page x:Class="lopus.Product"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:lopus"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Product">
+
+    <Grid Background="#00CC76">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="91"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBox Text="" Foreground="Gray" x:Name="TextBoxSearch" VerticalAlignment="Center" HorizontalAlignment="Left" BorderBrush="Black" Height="40" Width="350" Margin="10,0,0,0" TextWrapping="Wrap" FontSize="20" FontFamily="Verdana" GotKeyboardFocus="TextBoxSearch_GotKeyboardFocus" LostKeyboardFocus="TextBoxSearch_LostKeyboardFocus" TextChanged="TextBoxSearch_TextChanged"/>
+        <ComboBox x:Name="ComboboxFilter" VerticalAlignment="Center" HorizontalAlignment="Left" BorderBrush="Black" Margin="380,0,0,0" Height="40" Width="195" SelectionChanged="ComboType_SelectionChanged" >
+
+        </ComboBox>
+        <ComboBox Name="ComboboxSort" VerticalAlignment="Center" HorizontalAlignment="Left" BorderBrush="Black" Height="40" Width="193" Margin="580,0,0,0" SelectionChanged="ComboBox_SelectionChanged">
+
+        </ComboBox>
+        <ListView Grid.Row="1" Name="ListViewMaterial" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Left" Focusable="False" SelectionChanged="ListViewMaterial_SelectionChanged" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="20" Width="700">
+                        <Image  Source="resources/image/paper_0.jpeg"      Width="150" Grid.Row="1" HorizontalAlignment="Left"   Margin="2">
+
+                        </Image>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" IsEnabled="True"   >
+
+                            <TextBlock     Grid.Row="3" FontSize="15"    VerticalAlignment="Top" Text="{Binding Наименование}"></TextBlock>
+                            <TextBlock Text="|" Grid.Row="3" FontSize="14"  VerticalAlignment="Top" ></TextBlock>
+                            <TextBlock     Grid.Row="3" FontSize="15"     VerticalAlignment="Top" Text="{Binding Тип_прод}"></TextBlock>
+                            <TextBlock    Grid.Row="3" FontSize="15"     VerticalAlignment="Center"  Text="{Binding Артикул, StringFormat={}Артикул : {0} }"></TextBlock>
+                            <TextBlock     Margin="1" Grid.Row="3" FontSize="12"     VerticalAlignment="Bottom"   Text="{Binding Мин_стоим, StringFormat={}Мин.стоимость: {0} руб}"          ></TextBlock>
+                           
+                        </StackPanel>
+                       
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>

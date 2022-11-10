@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7533eb3ec7754e80ad16a665531585a1" Name="Diagram1">
+        <EntityTypeShape EntityType="LOXModel.authoriz" Width="1.5" PointX="7.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LOXModel.Агент" Width="1.5" PointX="7.75" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LOXModel.Аналитик" Width="1.5" PointX="7.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LOXModel.График_смены" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LOXModel.Заявка" Width="1.5" PointX="10" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LOXModel.Мастер_смены" Width="1.5" PointX="0.75" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LOXModel.Материал" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LOXModel.Менеджер" Width="1.5" PointX="7.75" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LOXModel.Предложение" Width="1.5" PointX="10" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LOXModel.Продукт" Width="1.5" PointX="3" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LOXModel.Продукция" Width="1.5" PointX="3" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LOXModel.Производство" Width="1.5" PointX="5.25" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LOXModel.Сотрудник" Width="1.5" PointX="5.25" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="LOXModel.ТипОрганизации" Width="1.5" PointX="9.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LOXModel.Точка_продажи" Width="1.5" PointX="5.5" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="LOXModel.Турникет" Width="1.5" PointX="7.5" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LOXModel.Цех" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="LOXModel.FK_Агент_Точка_продажи" ManuallyRouted="false" />
+        <AssociationConnector Association="LOXModel.FK_Заявка_Агент" ManuallyRouted="false" />
+        <AssociationConnector Association="LOXModel.FK_Предложение_Агент" ManuallyRouted="false" />
+        <AssociationConnector Association="LOXModel.FK_Предложение_Аналитик" ManuallyRouted="false" />
+        <AssociationConnector Association="LOXModel.FK_График_смены_Мастер_смены" ManuallyRouted="false" />
+        <AssociationConnector Association="LOXModel.FK_График_смены_Цех" ManuallyRouted="false" />
+        <AssociationConnector Association="LOXModel.FK_Производство_График_смены" ManuallyRouted="false" />
+        <AssociationConnector Association="LOXModel.FK_Сотрудник_График_смены" ManuallyRouted="false" />
+        <AssociationConnector Association="LOXModel.FK_Заявка_Менеджер" ManuallyRouted="false" />
+        <AssociationConnector Association="LOXModel.FK_Заявка_Продукция" ManuallyRouted="false" />
+        <AssociationConnector Association="LOXModel.FK_Предложение_Менеджер" ManuallyRouted="false" />
+        <AssociationConnector Association="LOXModel.МатериалИПоставщик" ManuallyRouted="false" />
+        <AssociationConnector Association="LOXModel.ПродукцияИМатериал" ManuallyRouted="false" />
+        <AssociationConnector Association="LOXModel.ПродукцияИПроизводство" ManuallyRouted="false" />
+        <AssociationConnector Association="LOXModel.СотрудникИТурникет" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

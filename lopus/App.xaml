@@ -1,0 +1,20 @@
+﻿<Application x:Class="lopus.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:lopus"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="5"></Setter>
+            <Setter Property="Width" Value="175"></Setter>
+            <Setter Property="Height" Value="30"></Setter>
+            <Setter Property="Background" Value="#00CC76"></Setter>
+            <Setter Property="FontFamily" Value="Gabriola"></Setter>
+            <Setter Property="FontSize" Value="22"/>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Gabriola"></Setter>
+        </Style>
+
+    </Application.Resources>
+</Application>
